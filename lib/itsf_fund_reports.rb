@@ -1,3 +1,5 @@
+require 'paperclip'
+
 require 'itsf/fund_reports/engine'
 require 'itsf/fund_reports/configuration'
 require 'itsf/fund_reports/routing'

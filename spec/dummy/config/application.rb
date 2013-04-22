@@ -11,6 +11,8 @@ require "sprockets/railtie"
 Bundler.require
 require "activeadmin"
 require "i18n_routing"
+require "yaml_db"
+
 require "itsf_fund_reports"
 
 module Dummy

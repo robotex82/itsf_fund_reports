@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130323132205) do
+ActiveRecord::Schema.define(:version => 20130422094922) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -44,5 +44,72 @@ ActiveRecord::Schema.define(:version => 20130323132205) do
 
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
+
+  create_table "itsf_fund_reports_accounts", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "itsf_fund_reports_actions", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "itsf_fund_reports_currencies", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "itsf_fund_reports_exchanges", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "itsf_fund_reports_execution_imports", :force => true do |t|
+    t.date     "day"
+    t.string   "asset_file_name"
+    t.string   "asset_content_type"
+    t.integer  "asset_file_size"
+    t.datetime "asset_updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "itsf_fund_reports_executions", :force => true do |t|
+    t.integer  "quantity"
+    t.string   "description"
+    t.decimal  "price",            :precision => 12, :scale => 4
+    t.datetime "executed_at"
+    t.string   "order_identifier"
+    t.string   "order_reference"
+    t.integer  "account_id"
+    t.integer  "action_id"
+    t.integer  "currency_id"
+    t.integer  "exchange_id"
+    t.integer  "underlying_id"
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
+  end
+
+  add_index "itsf_fund_reports_executions", ["account_id"], :name => "index_itsf_fund_reports_executions_on_account_id"
+  add_index "itsf_fund_reports_executions", ["action_id"], :name => "index_itsf_fund_reports_executions_on_action_id"
+  add_index "itsf_fund_reports_executions", ["currency_id"], :name => "index_itsf_fund_reports_executions_on_currency_id"
+  add_index "itsf_fund_reports_executions", ["exchange_id"], :name => "index_itsf_fund_reports_executions_on_exchange_id"
+  add_index "itsf_fund_reports_executions", ["underlying_id"], :name => "index_itsf_fund_reports_executions_on_underlying_id"
+
+  create_table "itsf_fund_reports_underlyings", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
 end
