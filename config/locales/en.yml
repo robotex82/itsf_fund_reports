@@ -1,1 +1,60 @@
 en:
+  activemodel:
+    attributes:
+      itsf/fund_reports/trade:
+        pl: p/l
+        pl_in_points: p/l (points)
+      itsf/fund_reports/execution_reports/monthly:
+        cumulated_pl: cumulated p/l
+      itsf/fund_reports/execution_reports/monthly_wrapper:
+        end_date: end date
+        start_date: start date
+    models:
+      itsf/fund_reports/execution_reports/monthly_wrapper:
+        one: monthly execution report
+        other: monthly execution reports
+  activerecord:
+    attributes:
+      itsf/fund_reports/execution:
+        action: action
+        executed_at: executed at
+        order_identifier: order identifier
+        order_reference: order reference
+        price: price
+        quantity: quantity
+        underlying: underlying
+      itsf/fund_reports/execution_import:
+        asset_content_type: file content type
+        asset_file_name: file name
+        asset_updated_at: file updated at
+        day: day
+      itsf/fund_reports/underlying:
+        multiplier: multiplier        
+    models:
+      itsf/fund_reports/account:
+        one: account
+        other: accounts
+      itsf/fund_reports/action:
+        one: action
+        other: actions
+      itsf/fund_reports/currency:
+        one: currency
+        other: currencies
+      itsf/fund_reports/exchange:
+        one: exchange
+        other: exchanges
+      itsf/fund_reports/execution:
+        one: execution
+        other: executions
+      itsf/fund_reports/execution_import:
+        one: execution import
+        other: execution imports
+      itsf/fund_reports/underlying:
+        one: underlying
+        other: underlyings
+  attributes:
+    created_at: created_at
+    description: description
+    name: name
+    id: ID
+    updated_at: updated_at

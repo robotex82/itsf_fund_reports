@@ -2,6 +2,32 @@ require 'spec_helper'
 
 module ITSF::FundReports
   describe Execution do
+    describe 'public interface' do
+      describe '#buy?' do
+        describe 'for a SLD (short) trade' do
+          subject { FactoryGirl.create(:itsf_fund_reports_execution_sell) }
+          its(:buy?) { should eq(false) }
+        end # describe 'for a SLD (short) trade'
+
+        describe 'for a BOT (long) trade' do
+          subject { FactoryGirl.create(:itsf_fund_reports_execution_buy) }
+          its(:buy?) { should eq(true) }
+        end # describe 'for a BOT (long) trade'
+      end # describe '#buy?'
+
+      describe '#sell?' do
+        describe 'for a SLD (short) trade' do
+          subject { FactoryGirl.create(:itsf_fund_reports_execution_sell) }
+          its(:sell?) { should eq(true) }
+        end # describe 'for a SLD (short) trade'
+
+        describe 'for a BOT (long) trade' do
+          subject { FactoryGirl.create(:itsf_fund_reports_execution_buy) }
+          its(:sell?) { should eq(false) }
+        end # describe 'for a BOT (long) trade'
+      end # describe '#sell?'
+    end # describe
+
     describe 'validations' do
       it { should validate_presence_of :account_id }
       it { should validate_presence_of :action_id }

@@ -1,0 +1,55 @@
+<table class="index_table index">
+  <tr>
+    <th><%= ITSF::FundReports::ExecutionReports::MonthlyWrapper.human_attribute_name(:start_date) %></th>
+    <td><%= @report.start_date %></td>
+  </tr>
+  <tr>
+    <th><%= ITSF::FundReports::ExecutionReports::MonthlyWrapper.human_attribute_name(:end_date) %></th>
+    <td><%= @report.end_date %></td>
+  </tr>
+  <tr>
+    <th><%= ITSF::FundReports::ExecutionReports::Monthly.human_attribute_name(:cumulated_pl) %></th>
+    <td><%= @report.result.pl %></td>
+  </tr>
+</table>
+
+<table class="index_table index">
+  <tr>
+    <th><%= ITSF::FundReports::Execution.human_attribute_name(:executed_at) %></th>
+    <th><%= ITSF::FundReports::Execution.human_attribute_name(:action) %></th>
+    <th><%= ITSF::FundReports::Execution.human_attribute_name(:quantity) %></th>
+    <th><%= ITSF::FundReports::Execution.human_attribute_name(:underlying) %></th>
+    <th><%= ITSF::FundReports::Execution.human_attribute_name(:price) %></th>
+    <th><%= ITSF::FundReports::Execution.human_attribute_name(:order_reference) %></th>
+    <th><%= ITSF::FundReports::Trade.human_attribute_name(:pl_in_points) %></th>
+    <th><%= ITSF::FundReports::Trade.human_attribute_name(:pl) %></th>
+  </tr>
+<% @report.result.trades_by_day.each do |day, trades| %>
+  <tr>
+    <th colspan=8><%= day %></th>
+  </tr>
+  <% trades.each do |trade| %>
+    <tr>
+      <td><%= trade.open_execution.executed_at %></td>
+      <td><%= trade.open_execution.action %></td>
+      <td><%= trade.open_execution.quantity %></td>
+      <td><%= trade.open_execution.underlying %></td>
+      <td><%= trade.open_execution.price %></td>
+      <td><%= trade.open_execution.order_reference %></td>
+      <td></td>
+      <td></td>      
+    </tr>
+    <tr>
+      <td style="border-bottom: 1px solid black"><%= trade.close_execution.executed_at %></td>
+      <td style="border-bottom: 1px solid black"><%= trade.close_execution.action %></td>
+      <td style="border-bottom: 1px solid black"><%= trade.close_execution.quantity %></td>
+      <td style="border-bottom: 1px solid black"><%= trade.close_execution.underlying %></td>
+      <td style="border-bottom: 1px solid black"><%= trade.close_execution.price %></td>
+      <td style="border-bottom: 1px solid black"><%= trade.close_execution.order_reference %></td>
+      <td style="border-bottom: 1px solid black"><span style="color: <%= trade.win? ? "green" : "red" %>"><%= trade.pl_in_points %></span></td>
+      <td style="border-bottom: 1px solid black"><span style="color: <%= trade.win? ? "green" : "red" %>"><%= trade.pl %></span></td>
+    </tr>
+  <% end %>
+<% end %>
+</table>
+

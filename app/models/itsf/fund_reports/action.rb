@@ -8,6 +8,10 @@ module ITSF::FundReports
     # validations
     validates :name, :presence => true,
                      :uniqueness => true
+
+    def to_s
+      name
+    end
   end # class Action < ActiveRecord::Base
 end # module ITSF::FundReports
 

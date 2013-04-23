@@ -36,6 +36,22 @@ module ITSF::FundReports
     validates :price, :presence => true
     validates :quantity, :presence => true
     validates :underlying_id, :presence => true
+
+    def self.executed_between(start_date, end_date)
+      where("executed_at >= ? and executed_at < ?", start_date, end_date)
+    end
+
+    def action_name
+      action.name
+    end
+
+    def buy?
+      action_name == 'BOT'
+    end # def
+
+    def sell?
+      action_name == 'SLD'
+    end # def
   end # class Execution < ActiveRecord::Base
 end # module ITSF::FundReports
 

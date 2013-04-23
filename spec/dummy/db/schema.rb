@@ -108,8 +108,9 @@ ActiveRecord::Schema.define(:version => 20130422094922) do
   create_table "itsf_fund_reports_underlyings", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "multiplier",  :default => 1
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
 end

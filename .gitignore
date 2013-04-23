@@ -1,10 +1,12 @@
 .bundle/
 log/*.log
 pkg/
+spec/dummy/db/data.yml
 spec/dummy/db/*.sqlite3
 spec/dummy/log/*.log
 spec/dummy/tmp/
 spec/dummy/.sass-cache
+spec/files
 *.gem
 tmp/
 .localeapp
