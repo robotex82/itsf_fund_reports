@@ -2,6 +2,9 @@ module ITSF::FundReports
   class Exchange < ActiveRecord::Base
     self.table_name = 'itsf_fund_reports_exchanges'
 
+    # associations
+    has_many :executions
+
     # attributes
     attr_accessible :description, :name
 

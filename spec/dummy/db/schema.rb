@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130422094922) do
+ActiveRecord::Schema.define(:version => 20130424093132) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(:version => 20130422094922) do
   create_table "itsf_fund_reports_executions", :force => true do |t|
     t.integer  "quantity"
     t.string   "description"
-    t.decimal  "price",            :precision => 12, :scale => 4
+    t.decimal  "price",               :precision => 12, :scale => 4
     t.datetime "executed_at"
     t.string   "order_identifier"
     t.string   "order_reference"
@@ -94,15 +94,17 @@ ActiveRecord::Schema.define(:version => 20130422094922) do
     t.integer  "action_id"
     t.integer  "currency_id"
     t.integer  "exchange_id"
+    t.integer  "execution_import_id"
     t.integer  "underlying_id"
-    t.datetime "created_at",                                      :null => false
-    t.datetime "updated_at",                                      :null => false
+    t.datetime "created_at",                                         :null => false
+    t.datetime "updated_at",                                         :null => false
   end
 
   add_index "itsf_fund_reports_executions", ["account_id"], :name => "index_itsf_fund_reports_executions_on_account_id"
   add_index "itsf_fund_reports_executions", ["action_id"], :name => "index_itsf_fund_reports_executions_on_action_id"
   add_index "itsf_fund_reports_executions", ["currency_id"], :name => "index_itsf_fund_reports_executions_on_currency_id"
   add_index "itsf_fund_reports_executions", ["exchange_id"], :name => "index_itsf_fund_reports_executions_on_exchange_id"
+  add_index "itsf_fund_reports_executions", ["execution_import_id"], :name => "index_itsf_fund_reports_executions_on_execution_import_id"
   add_index "itsf_fund_reports_executions", ["underlying_id"], :name => "index_itsf_fund_reports_executions_on_underlying_id"
 
   create_table "itsf_fund_reports_underlyings", :force => true do |t|

@@ -2,6 +2,9 @@ module ITSF::FundReports
   class Underlying < ActiveRecord::Base
     self.table_name = 'itsf_fund_reports_underlyings'
 
+    # associations
+    has_many :executions
+
     # attributes
     attr_accessible :description,
                     :multiplier,

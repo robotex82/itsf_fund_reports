@@ -2,6 +2,14 @@ require 'spec_helper'
 
 module ITSF::FundReports
   describe Execution do
+    describe 'associations' do
+      it { should belong_to :action }
+      it { should belong_to :account }
+      it { should belong_to :currency }
+      it { should belong_to :exchange }
+      it { should belong_to :underlying }
+    end # describe 'associations'
+
     describe 'public interface' do
       describe '#buy?' do
         describe 'for a SLD (short) trade' do

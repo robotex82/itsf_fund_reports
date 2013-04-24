@@ -2,6 +2,10 @@ require 'spec_helper'
 
 module ITSF::FundReports
   describe ExecutionImport do
+    describe 'associations' do
+      it { should have_many :executions }
+    end # describe 'associations'
+
     describe 'assets' do
       it { should have_attached_file :asset }
     end # describe 'assets'

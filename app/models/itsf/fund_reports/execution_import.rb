@@ -7,6 +7,9 @@ module ITSF::FundReports
   class ExecutionImport < ActiveRecord::Base
     self.table_name = 'itsf_fund_reports_execution_imports'
 
+    # associations
+    has_many :executions
+
     # attributes
     attr_accessible :asset,
                     :asset_content_type,
@@ -50,18 +53,18 @@ module ITSF::FundReports
     end # def
 
     def load_imported_executions
-# ap ITSF::FundReports::Execution.accessible_attributes    
+# ap ITSF::FundReports::Execution.accessible_attributes
       imported_executions = []
       FasterCSV.foreach(asset.path, :headers => true, :col_sep => ";") do |row|
         next if row.empty?
         execution = ITSF::FundReports::Execution.where(:order_identifier => row["order_identifier"]).first || ITSF::FundReports::Execution.new
-# ap row.to_hash # .slice(*ITSF::FundReports::Execution.accessible_attributes)        
+# ap row.to_hash # .slice(*ITSF::FundReports::Execution.accessible_attributes)
 
         row.to_hash.each do |key, value|
           if key =~ /(.*)\.(.*)/
             association_name = $~[1].to_sym
             association_attribute = $~[2]
-            association = ITSF::FundReports::Execution.reflect_on_association(association_name)   
+            association = ITSF::FundReports::Execution.reflect_on_association(association_name)
             associated = association.klass.where(association_attribute => value).first_or_create
             execution.send("#{association_name}=", associated)
 
@@ -75,7 +78,7 @@ module ITSF::FundReports
 # ap execution
 #        execution.attributes = row.to_hash.slice(*ITSF::FundReports::Execution.accessible_attributes)
         imported_executions << execution
-      end  
+      end
       imported_executions
     end
 
@@ -100,3 +103,4 @@ module ITSF::FundReports
 #    end # def
   end # class ExecutionImport
 end # module ITSF::FundReports
+
