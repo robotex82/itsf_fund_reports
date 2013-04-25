@@ -29,7 +29,7 @@ en:
         asset_updated_at: file updated at
         day: day
       itsf/fund_reports/underlying:
-        multiplier: multiplier        
+        multiplier: multiplier
     models:
       itsf/fund_reports/account:
         one: account
@@ -37,6 +37,9 @@ en:
       itsf/fund_reports/action:
         one: action
         other: actions
+      itsf/fund_reports/asset_category:
+        one: asset category
+        other: asset categories
       itsf/fund_reports/currency:
         one: currency
         other: currencies
@@ -49,6 +52,24 @@ en:
       itsf/fund_reports/execution_import:
         one: execution import
         other: execution imports
+      itsf/fund_reports/flex_query:
+        one: flex query
+        other: flex queries
+      itsf/fund_reports/flex_query/run:
+        one: flex query run
+        other: flex query runs
+      itsf/fund_reports/order_type:
+        one: order type
+        other: order types
+      itsf/fund_reports/transaction_type:
+        one: transaction type
+        other: transaction types
+      itsf/fund_reports/symbol:
+        one: symbol
+        other: symbols
+      itsf/fund_reports/trades/trade:
+        one: trade
+        other: trades
       itsf/fund_reports/underlying:
         one: underlying
         other: underlyings
@@ -58,3 +79,4 @@ en:
     name: name
     id: ID
     updated_at: updated_at
+

@@ -7,7 +7,7 @@ module ITSF::FundReports
       it { should belong_to :currency }
       it { should belong_to :asset_category }
       it { should belong_to :symbol }
-      it { should belong_to :isin }
+      it { should belong_to :security }
       it { should belong_to :transaction_type }
       it { should belong_to :exchange }
       it { should belong_to :ib_commission_currency }

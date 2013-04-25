@@ -11,7 +11,8 @@ class CreateItsfFundReportsTradesTrades < ActiveRecord::Migration
       t.string :security_indentifier
       t.string :security_id_type
       t.string :cusip
-      t.references :isin
+      #t.references :isin
+      t.references :security
       t.string :underlying_con_identifier
       t.references :underlying_symbol
       t.string :issuer
@@ -69,7 +70,7 @@ class CreateItsfFundReportsTradesTrades < ActiveRecord::Migration
     add_index :itsf_fund_reports_trades_trades, :currency_id
     add_index :itsf_fund_reports_trades_trades, :asset_category_id
     add_index :itsf_fund_reports_trades_trades, :symbol_id
-    add_index :itsf_fund_reports_trades_trades, :isin_id
+    add_index :itsf_fund_reports_trades_trades, :security_id
     add_index :itsf_fund_reports_trades_trades, :underlying_symbol_id
     add_index :itsf_fund_reports_trades_trades, :transaction_type_id
     add_index :itsf_fund_reports_trades_trades, :exchange_id

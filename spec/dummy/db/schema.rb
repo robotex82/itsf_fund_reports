@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130425170018) do
+ActiveRecord::Schema.define(:version => 20130425172036) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -139,6 +139,14 @@ ActiveRecord::Schema.define(:version => 20130425170018) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "itsf_fund_reports_securities", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "isin"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "itsf_fund_reports_symbols", :force => true do |t|
     t.string   "name"
     t.text     "description"
@@ -157,7 +165,7 @@ ActiveRecord::Schema.define(:version => 20130425170018) do
     t.string   "security_indentifier"
     t.string   "security_id_type"
     t.string   "cusip"
-    t.integer  "isin_id"
+    t.integer  "security_id"
     t.string   "underlying_con_identifier"
     t.integer  "underlying_symbol_id"
     t.string   "issuer"
@@ -217,8 +225,8 @@ ActiveRecord::Schema.define(:version => 20130425170018) do
   add_index "itsf_fund_reports_trades_trades", ["currency_id"], :name => "index_itsf_fund_reports_trades_trades_on_currency_id"
   add_index "itsf_fund_reports_trades_trades", ["exchange_id"], :name => "index_itsf_fund_reports_trades_trades_on_exchange_id"
   add_index "itsf_fund_reports_trades_trades", ["ib_commission_currency_id"], :name => "index_itsf_fund_reports_trades_trades_on_ib_comm_currency_id"
-  add_index "itsf_fund_reports_trades_trades", ["isin_id"], :name => "index_itsf_fund_reports_trades_trades_on_isin_id"
   add_index "itsf_fund_reports_trades_trades", ["order_type_id"], :name => "index_itsf_fund_reports_trades_trades_on_order_type_id"
+  add_index "itsf_fund_reports_trades_trades", ["security_id"], :name => "index_itsf_fund_reports_trades_trades_on_security_id"
   add_index "itsf_fund_reports_trades_trades", ["symbol_id"], :name => "index_itsf_fund_reports_trades_trades_on_symbol_id"
   add_index "itsf_fund_reports_trades_trades", ["transaction_type_id"], :name => "index_itsf_fund_reports_trades_trades_on_transaction_type_id"
   add_index "itsf_fund_reports_trades_trades", ["underlying_symbol_id"], :name => "index_itsf_fund_reports_trades_trades_on_underlying_symbol_id"

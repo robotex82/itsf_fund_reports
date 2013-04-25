@@ -7,7 +7,7 @@ module ITSF::FundReports
     belongs_to :currency
     belongs_to :asset_category
     belongs_to :symbol
-    belongs_to :isin
+    belongs_to :security
     belongs_to :transaction_type
     belongs_to :exchange
     belongs_to :ib_commission_currency, :class_name => Currency
