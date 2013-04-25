@@ -4,6 +4,7 @@ module ITSF::FundReports
 
     # associations
     has_many :executions
+    has_many :flex_queries
 
     # attributes
     attr_accessible :description, :name

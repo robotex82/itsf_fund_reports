@@ -20,3 +20,5 @@ unless ENV['TRAVIS_RUBY_VERSION'].nil?
   gem 'pg'
   gem 'mysql2'
 end
+
+gem "ib-ruby", :path => '~/rails/forks/ib-ruby-master'

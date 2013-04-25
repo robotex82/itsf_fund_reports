@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130424093132) do
+ActiveRecord::Schema.define(:version => 20130424223743) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -106,6 +106,24 @@ ActiveRecord::Schema.define(:version => 20130424093132) do
   add_index "itsf_fund_reports_executions", ["exchange_id"], :name => "index_itsf_fund_reports_executions_on_exchange_id"
   add_index "itsf_fund_reports_executions", ["execution_import_id"], :name => "index_itsf_fund_reports_executions_on_execution_import_id"
   add_index "itsf_fund_reports_executions", ["underlying_id"], :name => "index_itsf_fund_reports_executions_on_underlying_id"
+
+  create_table "itsf_fund_reports_flex_queries", :force => true do |t|
+    t.string   "query_identifier"
+    t.string   "format"
+    t.integer  "account_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  create_table "itsf_fund_reports_flex_query_runs", :force => true do |t|
+    t.string   "asset_file_name"
+    t.integer  "asset_file_size"
+    t.string   "asset_content_type"
+    t.datetime "asset_updated_at"
+    t.integer  "flex_query_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
 
   create_table "itsf_fund_reports_underlyings", :force => true do |t|
     t.string   "name"

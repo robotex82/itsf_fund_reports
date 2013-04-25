@@ -9,8 +9,8 @@ module ITSF
         yield self
       end # def
 
-      # mattr_accessor :foo
-      # @@foo = nil
+      mattr_accessor :allowed_flex_query_formats
+      @@allowed_flex_query_formats = []
     end # module Configuration
   end # module FundReports
 end # module ITSF

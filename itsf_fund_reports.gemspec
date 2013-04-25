@@ -17,8 +17,8 @@ Gem::Specification.new do |s|
 
   s.add_dependency "awesome_print"
   s.add_dependency "fastercsv"
+  # s.add_dependency "ib-ruby"
   s.add_dependency "rails", "~> 3.2.13"
-  # s.add_dependency "roo"
   s.add_dependency "paperclip", "~> 2.7.0"
 
   # Development Database
