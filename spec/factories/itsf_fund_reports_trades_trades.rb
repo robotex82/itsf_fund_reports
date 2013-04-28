@@ -3,6 +3,7 @@
 FactoryGirl.define do
   factory :itsf_fund_reports_trades_trade, :class => 'ITSF::FundReports::Trades::Trade' do
     association :account, :factory => :itsf_fund_reports_account
+    association :action, :factory => :itsf_fund_reports_action
     association :currency, :factory => :itsf_fund_reports_currency
     association :asset_category, :factory => :itsf_fund_reports_asset_category
 #    fx_rate_to_base "9.99"
@@ -22,7 +23,7 @@ FactoryGirl.define do
 #    settle_date_target "2013-04-25"
     association :transaction_type, :factory => :itsf_fund_reports_transaction_type
     association :exchange, :factory => :itsf_fund_reports_exchange
-#    quantity 1
+    quantity 1
 #    trade_price "9.99"
 #    multiplier 1
 #    trade_money "9.99"
@@ -44,8 +45,8 @@ FactoryGirl.define do
 #    expiry "2013-04-25"
 #    put_call "MyString"
 #    buy_sell "MyString"
-#    ib_order_identifier "MyString"
-#    ib_exec_identifier "MyString"
+    sequence(:ib_order_identifier) { |i| i.to_s }
+    sequence(:ib_exec_identifier) { |i| i.to_s }
 #    brokerage_order_ifentifier "MyString"
 #    order_reference "MyString"
 #    volatility_order_link "MyString"
@@ -62,6 +63,7 @@ FactoryGirl.define do
 #    change_in_price "9.99"
 #    change_in_quantity 1
 #    net_cash "9.99"
+    association :order, :factory => :itsf_fund_reports_trades_order
     association :order_type, :factory => :itsf_fund_reports_order_type
   end
 end

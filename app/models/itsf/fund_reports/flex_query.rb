@@ -8,6 +8,7 @@ module ITSF::FundReports
 
     # attributes
     attr_accessible :account_id,
+                    :description,
                     :format,
                     :query_identifier
 
@@ -30,6 +31,10 @@ module ITSF::FundReports
       result = run_query
       asset = build_asset(result)
       runs.build(:asset => asset).save!
+    end # def
+
+    def to_s
+      "#{account_name} - #{description}"
     end # def
 
     private

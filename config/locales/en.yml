@@ -28,6 +28,8 @@ en:
         asset_file_name: file name
         asset_updated_at: file updated at
         day: day
+      itsf/fund_reports/flex_query:
+        account: account
       itsf/fund_reports/underlying:
         multiplier: multiplier
     models:
@@ -67,6 +69,9 @@ en:
       itsf/fund_reports/symbol:
         one: symbol
         other: symbols
+      itsf/fund_reports/trades/order:
+        one: order
+        other: orders
       itsf/fund_reports/trades/trade:
         one: trade
         other: trades

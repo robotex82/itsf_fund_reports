@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130425172036) do
+ActiveRecord::Schema.define(:version => 20130427233023) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(:version => 20130425172036) do
   create_table "itsf_fund_reports_flex_queries", :force => true do |t|
     t.string   "query_identifier"
     t.string   "format"
+    t.text     "description"
     t.integer  "account_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
@@ -154,11 +155,12 @@ ActiveRecord::Schema.define(:version => 20130425172036) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "itsf_fund_reports_trades_trades", :force => true do |t|
+  create_table "itsf_fund_reports_trades_orders", :force => true do |t|
     t.integer  "account_id"
+    t.integer  "action_id"
     t.integer  "currency_id"
     t.integer  "asset_category_id"
-    t.decimal  "fx_rate_to_base"
+    t.decimal  "fx_rate_to_base",            :precision => 12, :scale => 4
     t.integer  "symbol_id"
     t.string   "description"
     t.string   "con_identifier"
@@ -176,27 +178,26 @@ ActiveRecord::Schema.define(:version => 20130425172036) do
     t.integer  "transaction_type_id"
     t.integer  "exchange_id"
     t.integer  "quantity"
-    t.decimal  "trade_price"
+    t.decimal  "trade_price",                :precision => 12, :scale => 4
     t.integer  "multiplier"
-    t.decimal  "trade_money"
-    t.decimal  "proceeds"
-    t.decimal  "taxes"
-    t.decimal  "ib_commission"
+    t.decimal  "trade_money",                :precision => 12, :scale => 4
+    t.decimal  "proceeds",                   :precision => 12, :scale => 4
+    t.decimal  "taxes",                      :precision => 12, :scale => 4
+    t.decimal  "ib_commission",              :precision => 12, :scale => 4
     t.integer  "ib_commission_currency_id"
-    t.decimal  "close_price"
+    t.decimal  "close_price",                :precision => 12, :scale => 4
     t.string   "open_close_indicator"
     t.string   "notes"
-    t.decimal  "cost"
-    t.decimal  "fifo_pnl_realized"
-    t.decimal  "mtm_pnl"
-    t.decimal  "orig_trade_price"
+    t.decimal  "cost",                       :precision => 12, :scale => 4
+    t.decimal  "fifo_pnl_realized",          :precision => 12, :scale => 4
+    t.decimal  "mtm_pnl",                    :precision => 12, :scale => 4
+    t.decimal  "orig_trade_price",           :precision => 12, :scale => 4
     t.datetime "orig_trade_date"
     t.string   "orig_trade_identifier"
     t.string   "orig_order_identifier"
     t.string   "strike"
     t.date     "expiry"
     t.string   "put_call"
-    t.string   "buy_sell"
     t.string   "ib_order_identifier"
     t.string   "ib_exec_identifier"
     t.string   "brokerage_order_ifentifier"
@@ -212,19 +213,104 @@ ActiveRecord::Schema.define(:version => 20130425172036) do
     t.datetime "when_realized"
     t.datetime "when_reopened"
     t.string   "level_of_detail"
-    t.decimal  "change_in_price"
+    t.decimal  "change_in_price",            :precision => 12, :scale => 4
     t.integer  "change_in_quantity"
-    t.decimal  "net_cash"
+    t.decimal  "net_cash",                   :precision => 12, :scale => 4
     t.integer  "order_type_id"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.integer  "flex_query_run_id"
+    t.datetime "created_at",                                                :null => false
+    t.datetime "updated_at",                                                :null => false
+  end
+
+  add_index "itsf_fund_reports_trades_orders", ["account_id"], :name => "index_itsf_fund_reports_trades_orders_on_account_id"
+  add_index "itsf_fund_reports_trades_orders", ["action_id"], :name => "index_itsf_fund_reports_trades_orders_on_action_id"
+  add_index "itsf_fund_reports_trades_orders", ["asset_category_id"], :name => "index_itsf_fund_reports_trades_orders_on_asset_category_id"
+  add_index "itsf_fund_reports_trades_orders", ["currency_id"], :name => "index_itsf_fund_reports_trades_orders_on_currency_id"
+  add_index "itsf_fund_reports_trades_orders", ["exchange_id"], :name => "index_itsf_fund_reports_trades_orders_on_exchange_id"
+  add_index "itsf_fund_reports_trades_orders", ["flex_query_run_id"], :name => "index_itsf_fund_reports_trades_orders_on_flex_query_run_id"
+  add_index "itsf_fund_reports_trades_orders", ["ib_commission_currency_id"], :name => "index_itsf_fund_reports_trades_orders_on_ib_comm_currency_id"
+  add_index "itsf_fund_reports_trades_orders", ["order_type_id"], :name => "index_itsf_fund_reports_trades_orders_on_order_type_id"
+  add_index "itsf_fund_reports_trades_orders", ["security_id"], :name => "index_itsf_fund_reports_trades_orders_on_security_id"
+  add_index "itsf_fund_reports_trades_orders", ["symbol_id"], :name => "index_itsf_fund_reports_trades_orders_on_symbol_id"
+  add_index "itsf_fund_reports_trades_orders", ["transaction_type_id"], :name => "index_itsf_fund_reports_trades_orders_on_transaction_type_id"
+  add_index "itsf_fund_reports_trades_orders", ["underlying_symbol_id"], :name => "index_itsf_fund_reports_trades_orders_on_underlying_symbol_id"
+
+  create_table "itsf_fund_reports_trades_trades", :force => true do |t|
+    t.integer  "account_id"
+    t.integer  "action_id"
+    t.integer  "currency_id"
+    t.integer  "asset_category_id"
+    t.decimal  "fx_rate_to_base",            :precision => 12, :scale => 4
+    t.integer  "symbol_id"
+    t.string   "description"
+    t.string   "con_identifier"
+    t.string   "security_indentifier"
+    t.string   "security_id_type"
+    t.string   "cusip"
+    t.integer  "security_id"
+    t.string   "underlying_con_identifier"
+    t.integer  "underlying_symbol_id"
+    t.string   "issuer"
+    t.string   "trade_identifier"
+    t.date     "report_date"
+    t.datetime "trade_time"
+    t.date     "settle_date_target"
+    t.integer  "transaction_type_id"
+    t.integer  "exchange_id"
+    t.integer  "quantity"
+    t.decimal  "trade_price",                :precision => 12, :scale => 4
+    t.integer  "multiplier"
+    t.decimal  "trade_money",                :precision => 12, :scale => 4
+    t.decimal  "proceeds",                   :precision => 12, :scale => 4
+    t.decimal  "taxes",                      :precision => 12, :scale => 4
+    t.decimal  "ib_commission",              :precision => 12, :scale => 4
+    t.integer  "ib_commission_currency_id"
+    t.decimal  "close_price",                :precision => 12, :scale => 4
+    t.string   "open_close_indicator"
+    t.string   "notes"
+    t.decimal  "cost",                       :precision => 12, :scale => 4
+    t.decimal  "fifo_pnl_realized",          :precision => 12, :scale => 4
+    t.decimal  "mtm_pnl",                    :precision => 12, :scale => 4
+    t.decimal  "orig_trade_price",           :precision => 12, :scale => 4
+    t.datetime "orig_trade_date"
+    t.string   "orig_trade_identifier"
+    t.string   "orig_order_identifier"
+    t.string   "strike"
+    t.date     "expiry"
+    t.string   "put_call"
+    t.string   "ib_order_identifier"
+    t.string   "ib_exec_identifier"
+    t.string   "brokerage_order_ifentifier"
+    t.string   "order_reference"
+    t.string   "volatility_order_link"
+    t.datetime "order_placement_time"
+    t.string   "clearing_firm_identifier"
+    t.string   "exch_order_identifier"
+    t.string   "ext_exec_identifier"
+    t.datetime "order_time"
+    t.datetime "open_date_time"
+    t.datetime "holding_period_date_time"
+    t.datetime "when_realized"
+    t.datetime "when_reopened"
+    t.string   "level_of_detail"
+    t.decimal  "change_in_price",            :precision => 12, :scale => 4
+    t.integer  "change_in_quantity"
+    t.decimal  "net_cash",                   :precision => 12, :scale => 4
+    t.integer  "order_id"
+    t.integer  "order_type_id"
+    t.integer  "flex_query_run_id"
+    t.datetime "created_at",                                                :null => false
+    t.datetime "updated_at",                                                :null => false
   end
 
   add_index "itsf_fund_reports_trades_trades", ["account_id"], :name => "index_itsf_fund_reports_trades_trades_on_account_id"
+  add_index "itsf_fund_reports_trades_trades", ["action_id"], :name => "index_itsf_fund_reports_trades_trades_on_action_id"
   add_index "itsf_fund_reports_trades_trades", ["asset_category_id"], :name => "index_itsf_fund_reports_trades_trades_on_asset_category_id"
   add_index "itsf_fund_reports_trades_trades", ["currency_id"], :name => "index_itsf_fund_reports_trades_trades_on_currency_id"
   add_index "itsf_fund_reports_trades_trades", ["exchange_id"], :name => "index_itsf_fund_reports_trades_trades_on_exchange_id"
+  add_index "itsf_fund_reports_trades_trades", ["flex_query_run_id"], :name => "index_itsf_fund_reports_trades_trades_on_flex_query_run_id"
   add_index "itsf_fund_reports_trades_trades", ["ib_commission_currency_id"], :name => "index_itsf_fund_reports_trades_trades_on_ib_comm_currency_id"
+  add_index "itsf_fund_reports_trades_trades", ["order_id"], :name => "index_itsf_fund_reports_trades_trades_on_order_id"
   add_index "itsf_fund_reports_trades_trades", ["order_type_id"], :name => "index_itsf_fund_reports_trades_trades_on_order_type_id"
   add_index "itsf_fund_reports_trades_trades", ["security_id"], :name => "index_itsf_fund_reports_trades_trades_on_security_id"
   add_index "itsf_fund_reports_trades_trades", ["symbol_id"], :name => "index_itsf_fund_reports_trades_trades_on_symbol_id"
