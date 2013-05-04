@@ -78,7 +78,7 @@ class CreateItsfFundReportsTradesTrades < ActiveRecord::Migration
     add_index :itsf_fund_reports_trades_trades, :transaction_type_id
     add_index :itsf_fund_reports_trades_trades, :exchange_id
     add_index :itsf_fund_reports_trades_trades, :ib_commission_currency_id, :name => 'index_itsf_fund_reports_trades_trades_on_ib_comm_currency_id'
-    add_index :itsf_fund_reports_trades_trades, :order
+    add_index :itsf_fund_reports_trades_trades, :order_id
     add_index :itsf_fund_reports_trades_trades, :order_type_id
     add_index :itsf_fund_reports_trades_trades, :flex_query_run_id
     add_index :itsf_fund_reports_trades_trades, :trade_group_id

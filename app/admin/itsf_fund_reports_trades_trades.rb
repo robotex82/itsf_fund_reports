@@ -8,7 +8,7 @@ ActiveAdmin.register ITSF::FundReports::Trades::Trade do
     scope account.name do |trades|
       trades.where(:account_id => account.id)
     end
-  end
+  end if ITSF::FundReports::Account.connection.table_exists?(ITSF::FundReports::Account.table_name)
 
   batch_action :create_trade_group do |selection|
     trades = ITSF::FundReports::Trades::Trade.find(selection)

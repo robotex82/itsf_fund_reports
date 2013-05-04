@@ -1,3 +1,5 @@
 ITSF::FundReports.configure do |config|
-  # config.foo = :bar
+  # default: config.allowed_flex_query_formats = [ :xml ]
+  config.allowed_flex_query_formats = [ :xml ]
 end
+

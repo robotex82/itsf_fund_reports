@@ -1,3 +1,4 @@
+require 'ib/flex'
 require 'paperclip'
 
 require 'itsf/fund_reports/engine'

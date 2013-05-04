@@ -1,4 +1,4 @@
-module ITSF
+module Itsf
   module FundReports
     module Generators
       class InstallGenerator < Rails::Generators::Base

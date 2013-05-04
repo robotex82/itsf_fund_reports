@@ -1,4 +1,4 @@
-module ITSF
+module Itsf
   module FundReports
     module Generators
       class LocalesGenerator < Rails::Generators::Base

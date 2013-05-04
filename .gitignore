@@ -12,3 +12,4 @@ spec/files
 *.gem
 tmp/
 .localeapp
+.localeapp

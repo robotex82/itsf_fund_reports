@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   # s.add_dependency "ib-ruby"
   s.add_dependency "rails", "~> 3.2.13"
   s.add_dependency "paperclip", "~> 2.7.0"
+  s.add_dependency "xml-simple"
 
   # Development Database
   s.add_development_dependency "sqlite3"

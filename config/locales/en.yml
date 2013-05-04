@@ -1,102 +1,101 @@
-en:
-  activemodel:
-    attributes:
-      itsf/fund_reports/trade:
+en: 
+  activemodel: 
+    attributes: 
+      itsf/fund_reports/execution_reports/monthly: 
+        cumulated_pl: "cumulated p/l"
+      itsf/fund_reports/execution_reports/monthly_wrapper: 
+        end_date: "end date"
+        start_date: "start date"
+      itsf/fund_reports/trade: 
         pl: p/l
-        pl_in_points: p/l (points)
-      itsf/fund_reports/execution_reports/monthly:
-        cumulated_pl: cumulated p/l
-      itsf/fund_reports/execution_reports/monthly_wrapper:
-        end_date: end date
-        start_date: start date
-    models:
-      itsf/fund_reports/execution_reports/monthly_wrapper:
-        one: monthly execution report
-        other: monthly execution reports
-  activerecord:
-    attributes:
-      itsf/fund_reports/execution:
+        pl_in_points: "p/l (points)"
+    models: 
+      itsf/fund_reports/execution_reports/monthly_wrapper: 
+        one: "monthly execution report"
+        other: "monthly execution reports"
+  activerecord: 
+    attributes: 
+      itsf/fund_reports/execution: 
         action: action
-        executed_at: executed at
-        order_identifier: order identifier
-        order_reference: order reference
+        executed_at: "executed at"
+        order_identifier: "order identifier"
+        order_reference: "order reference"
         price: price
         quantity: quantity
         underlying: underlying
-      itsf/fund_reports/execution_import:
-        asset_content_type: file content type
-        asset_file_name: file name
-        asset_updated_at: file updated at
+      itsf/fund_reports/execution_import: 
+        asset_content_type: "file content type"
+        asset_file_name: "file name"
+        asset_updated_at: "file updated at"
         day: day
-      itsf/fund_reports/flex_query:
+      itsf/fund_reports/flex_query: 
         account: account
-      itsf/fund_reports/underlying:
+      itsf/fund_reports/underlying: 
         multiplier: multiplier
-    models:
-      itsf/fund_reports/account:
+    models: 
+      itsf/fund_reports/account: 
         one: account
         other: accounts
-      itsf/fund_reports/action:
+      itsf/fund_reports/action: 
         one: action
         other: actions
-      itsf/fund_reports/asset_category:
-        one: asset category
-        other: asset categories
-      itsf/fund_reports/currency:
+      itsf/fund_reports/asset_category: 
+        one: "asset category"
+        other: "asset categories"
+      itsf/fund_reports/currency: 
         one: currency
         other: currencies
-      itsf/fund_reports/exchange:
+      itsf/fund_reports/exchange: 
         one: exchange
         other: exchanges
-      itsf/fund_reports/execution:
+      itsf/fund_reports/execution: 
         one: execution
         other: executions
-      itsf/fund_reports/execution_import:
-        one: execution import
-        other: execution imports
-      itsf/fund_reports/flex_query:
-        one: flex query
-        other: flex queries
-      itsf/fund_reports/flex_query/recurrence:
-        one: flex query recurrence
-        other: flex query recurrences
-      itsf/fund_reports/flex_query/run:
-        one: flex query run
-        other: flex query runs
-      itsf/fund_reports/order_type:
-        one: order type
-        other: order types
-      itsf/fund_reports/trade_group:
-        one: trade group
-        other: trade groups
-      itsf/fund_reports/transaction_type:
-        one: transaction type
-        other: transaction types
-      itsf/fund_reports/symbol:
+      itsf/fund_reports/execution_import: 
+        one: "execution import"
+        other: "execution imports"
+      itsf/fund_reports/flex_query: 
+        one: "flex query"
+        other: "flex queries"
+      itsf/fund_reports/flex_query/recurrence: 
+        one: "flex query recurrence"
+        other: "flex query recurrences"
+      itsf/fund_reports/flex_query/run: 
+        one: "flex query run"
+        other: "flex query runs"
+      itsf/fund_reports/order_type: 
+        one: "order type"
+        other: "order types"
+      itsf/fund_reports/symbol: 
         one: symbol
         other: symbols
-      itsf/fund_reports/trades/order:
+      itsf/fund_reports/trade_group: 
+        one: "trade group"
+        other: "trade groups"
+      itsf/fund_reports/trades/order: 
         one: order
         other: orders
-      itsf/fund_reports/trades/trade:
+      itsf/fund_reports/trades/trade: 
         one: trade
         other: trades
-      itsf/fund_reports/underlying:
+      itsf/fund_reports/transaction_type: 
+        one: "transaction type"
+        other: "transaction types"
+      itsf/fund_reports/underlying: 
         one: underlying
         other: underlyings
-  attributes:
+  attributes: 
     created_at: created_at
     description: description
-    name: name
     id: ID
+    name: name
     updated_at: updated_at
-  itsf:
-    fund_reports:
-      active_admin:
-        executions:
-          menu: Executions (Legacy)
-        flex_queries:
-          menu: Flex Queries
-        trades:
+  itsf: 
+    fund_reports: 
+      active_admin: 
+        executions: 
+          menu: "Executions (Legacy)"
+        flex_queries: 
+          menu: "Flex Queries"
+        trades: 
           menu: Trades
-

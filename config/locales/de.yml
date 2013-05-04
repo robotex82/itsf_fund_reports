@@ -1,1 +1,101 @@
-de:
+de: 
+  activemodel: 
+    attributes: 
+      itsf/fund_reports/execution_reports/monthly: 
+        cumulated_pl: "Kummulierte P/L"
+      itsf/fund_reports/execution_reports/monthly_wrapper: 
+        end_date: Ende
+        start_date: Start
+      itsf/fund_reports/trade: 
+        pl: P/L
+        pl_in_points: "P/L (Punkte)"
+    models: 
+      itsf/fund_reports/execution_reports/monthly_wrapper: 
+        one: "Ausführungsreport (Monatlich)"
+        other: "Ausführungsreports (Monatlich)"
+  activerecord: 
+    attributes: 
+      itsf/fund_reports/execution: 
+        action: Aktion
+        executed_at: "Ausgeführt am"
+        order_identifier: "Order Identikfikator"
+        order_reference: "Order Referenz"
+        price: Preis
+        quantity: Anzahl
+        underlying: Underlying
+      itsf/fund_reports/execution_import: 
+        asset_content_type: "Datei Content Typ"
+        asset_file_name: Dateiname
+        asset_updated_at: "Datei aktualisiert am"
+        day: Tag
+      itsf/fund_reports/flex_query: 
+        account: Konto
+      itsf/fund_reports/underlying: 
+        multiplier: Multiplikator
+    models: 
+      itsf/fund_reports/account: 
+        one: Konto
+        other: Konten
+      itsf/fund_reports/action: 
+        one: Aktion
+        other: Aktionen
+      itsf/fund_reports/asset_category: 
+        one: "Asset Kategorie"
+        other: "Asset Kategorien"
+      itsf/fund_reports/currency: 
+        one: Währung
+        other: Währungen
+      itsf/fund_reports/exchange: 
+        one: Handelsort
+        other: Handelsort
+      itsf/fund_reports/execution: 
+        one: Ausführung
+        other: Ausführungen
+      itsf/fund_reports/execution_import: 
+        one: Ausführungsreport
+        other: Ausfühfungsreports
+      itsf/fund_reports/flex_query: 
+        one: "Flex Query"
+        other: "Flex Queries"
+      itsf/fund_reports/flex_query/recurrence: 
+        one: "Flex Query Intervall"
+        other: "Flex Query Intervalle"
+      itsf/fund_reports/flex_query/run: 
+        one: "Flex Query Ausführung"
+        other: "Flex Query Ausführungen"
+      itsf/fund_reports/order_type: 
+        one: "Order Typ"
+        other: "Order Typen"
+      itsf/fund_reports/symbol: 
+        one: Symbol
+        other: Symbole
+      itsf/fund_reports/trade_group: 
+        one: "Trade Gruppe"
+        other: "Trade Gruppen"
+      itsf/fund_reports/trades/order: 
+        one: Order
+        other: Orders
+      itsf/fund_reports/trades/trade: 
+        one: Trade
+        other: Trades
+      itsf/fund_reports/transaction_type: 
+        one: Transaktionstyp
+        other: Transaktionstypen
+      itsf/fund_reports/underlying: 
+        one: Underlying
+        other: Underlyings
+  attributes: 
+    created_at: "erstellt am"
+    description: Beschreibung
+    id: ID
+    name: Name
+    updated_at: "aktualisiert am"
+  itsf: 
+    fund_reports: 
+      active_admin: 
+        executions: 
+          menu: "Ausführungen (Legacy)"
+        flex_queries: 
+          menu: "Flex Queries"
+        trades: 
+          menu: Trades
