@@ -1,4 +1,6 @@
 ActiveAdmin.register ITSF::FundReports::ExecutionImport do
+  menu :parent => Proc.new { I18n.t('itsf.fund_reports.active_admin.executions.menu') }.call
+
   action_item :only => :show do
     link_to('Import', [:import, :admin, itsf_fund_reports_execution_import])
   end # action_item

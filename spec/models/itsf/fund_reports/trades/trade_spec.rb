@@ -2,6 +2,34 @@ require 'spec_helper'
 
 module ITSF::FundReports
   describe Trades::Trade do
+    describe '#buy?' do
+      it { should respond_to :buy? }
+
+      describe 'for a buy trade' do
+        subject { FactoryGirl.create(:itsf_fund_reports_trades_trade_buy).buy? }
+        it { subject.should be_true }
+      end # describe 'for a buy trade'
+
+      describe 'for a sell trade' do
+        subject { FactoryGirl.create(:itsf_fund_reports_trades_trade_sell).buy? }
+        it { subject.should be_false }
+      end # describe 'for a sell trade'
+    end # describe '#buy?'
+
+    describe '#sell?' do
+      it { should respond_to :sell? }
+
+      describe 'for a buy trade' do
+        subject { FactoryGirl.create(:itsf_fund_reports_trades_trade_buy).sell? }
+        it { subject.should be_false }
+      end # describe 'for a buy trade'
+
+      describe 'for a sell trade' do
+        subject { FactoryGirl.create(:itsf_fund_reports_trades_trade_sell).sell? }
+        it { subject.should be_true }
+      end # describe 'for a sell trade'
+    end # describe '#sell?'
+
     describe '#find_source_order' do
       it { should respond_to :discover_source_order }
 
@@ -31,6 +59,7 @@ module ITSF::FundReports
       it { should belong_to :ib_commission_currency }
       it { should belong_to :order }      
       it { should belong_to :order_type }
+      it { should belong_to :trade_group }
       it { should belong_to :flex_query_run }
     end # describe 'associations'
 
@@ -49,6 +78,7 @@ module ITSF::FundReports
       it { should validate_presence_of :order_type }
       it { should validate_presence_of :quantity }
       it { should validate_presence_of :symbol }
+      it { should validate_presence_of :trade_time }
       it { should validate_presence_of :transaction_type }
     end # describe 'validations'
   end # describe Trades::Trade

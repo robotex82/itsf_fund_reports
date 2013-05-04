@@ -57,12 +57,18 @@ en:
       itsf/fund_reports/flex_query:
         one: flex query
         other: flex queries
+      itsf/fund_reports/flex_query/recurrence:
+        one: flex query recurrence
+        other: flex query recurrences
       itsf/fund_reports/flex_query/run:
         one: flex query run
         other: flex query runs
       itsf/fund_reports/order_type:
         one: order type
         other: order types
+      itsf/fund_reports/trade_group:
+        one: trade group
+        other: trade groups
       itsf/fund_reports/transaction_type:
         one: transaction type
         other: transaction types
@@ -84,4 +90,13 @@ en:
     name: name
     id: ID
     updated_at: updated_at
+  itsf:
+    fund_reports:
+      active_admin:
+        executions:
+          menu: Executions (Legacy)
+        flex_queries:
+          menu: Flex Queries
+        trades:
+          menu: Trades
 

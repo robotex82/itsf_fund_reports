@@ -19,7 +19,7 @@ FactoryGirl.define do
 #    issuer "MyString"
 #    trade_identifier "MyString"
 #    report_date "2013-04-25"
-#    trade_time "2013-04-25 17:15:46"
+    trade_time 1.day.ago
 #    settle_date_target "2013-04-25"
     association :transaction_type, :factory => :itsf_fund_reports_transaction_type
     association :exchange, :factory => :itsf_fund_reports_exchange
@@ -65,5 +65,13 @@ FactoryGirl.define do
 #    net_cash "9.99"
     association :order, :factory => :itsf_fund_reports_trades_order
     association :order_type, :factory => :itsf_fund_reports_order_type
+
+    factory :itsf_fund_reports_trades_trade_buy do
+      association :action, :factory => :itsf_fund_reports_action_buy
+    end
+
+    factory :itsf_fund_reports_trades_trade_sell do
+      association :action, :factory => :itsf_fund_reports_action_sell
+    end
   end
 end

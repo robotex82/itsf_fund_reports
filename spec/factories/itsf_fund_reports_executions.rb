@@ -15,17 +15,17 @@ FactoryGirl.define do
 
     factory :itsf_fund_reports_execution_sell do
       executed_at 1.day.ago
-      association :action, :factory => :itsf_fund_reports_action_sell
+      association :action, :factory => :itsf_fund_reports_action_sld
     end # factory
 
     factory :itsf_fund_reports_execution_buy_to_cover do
       executed_at 1.day.ago - 1.hour
-      association :action, :factory => :itsf_fund_reports_action_buy
+      association :action, :factory => :itsf_fund_reports_action_bot
     end # factory
 
     factory :itsf_fund_reports_execution_buy do
       executed_at 1.day.ago
-      association :action, :factory => :itsf_fund_reports_action_buy
+      association :action, :factory => :itsf_fund_reports_action_bot
     end # factory
   end # factory
 end # FactoryGirl.define

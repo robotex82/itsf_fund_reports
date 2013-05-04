@@ -64,6 +64,7 @@ class CreateItsfFundReportsTradesTrades < ActiveRecord::Migration
       t.references :order
       t.references :order_type
       t.references :flex_query_run
+      t.references :trade_group
 
       t.timestamps
     end
@@ -80,6 +81,7 @@ class CreateItsfFundReportsTradesTrades < ActiveRecord::Migration
     add_index :itsf_fund_reports_trades_trades, :order
     add_index :itsf_fund_reports_trades_trades, :order_type_id
     add_index :itsf_fund_reports_trades_trades, :flex_query_run_id
+    add_index :itsf_fund_reports_trades_trades, :trade_group_id
   end
 end
 

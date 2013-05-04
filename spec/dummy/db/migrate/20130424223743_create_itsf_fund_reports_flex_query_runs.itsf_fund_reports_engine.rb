@@ -2,6 +2,8 @@
 class CreateItsfFundReportsFlexQueryRuns < ActiveRecord::Migration
   def change
     create_table :itsf_fund_reports_flex_query_runs do |t|
+      t.timestamp :imported_at
+
       # paperclip
       t.string :asset_file_name
       t.integer :asset_file_size

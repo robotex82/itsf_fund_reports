@@ -4,13 +4,15 @@ module ITSF::FundReports
 
     # associations
     belongs_to :account
+    belongs_to :recurrence
     has_many :runs
 
     # attributes
     attr_accessible :account_id,
                     :description,
                     :format,
-                    :query_identifier
+                    :query_identifier,
+                    :recurrence_id
 
     # validations
     validates :account, :presence => true
@@ -18,6 +20,19 @@ module ITSF::FundReports
                        :inclusion => Configuration.allowed_flex_query_formats.map(&:to_s)
     validates :query_identifier, :presence => true,
                                  :uniqueness => { :scope => [ :account_id ] }
+
+    def self.daily
+      includes(:recurrence).where("itsf_fund_reports_flex_query_recurrences.name = ?", "daily")
+    end
+
+    def self.daily_pending
+      daily.
+      where("(SELECT COUNT(*) FROM itsf_fund_reports_flex_query_runs WHERE flex_query_id = itsf_fund_reports_flex_queries.id AND created_at >= ? AND created_at <= ? ) = 0", Time.zone.now.beginning_of_day, Time.zone.now.end_of_day)
+    end
+
+    def self.pending
+      where("(select count(*) from itsf_fund_reports_flex_query_runs where flex_query_id = itsf_fund_reports_flex_queries.id) = 0")
+    end
 
     def account_name
       account.name

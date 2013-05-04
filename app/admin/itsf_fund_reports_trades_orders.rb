@@ -1,4 +1,7 @@
 ActiveAdmin.register ITSF::FundReports::Trades::Order do
+  # menu entry settings
+  menu :parent => Proc.new { I18n.t('itsf.fund_reports.active_admin.trades.menu') }.call
+
   index do
     selectable_column
     column :account

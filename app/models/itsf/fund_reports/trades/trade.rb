@@ -17,6 +17,7 @@ module ITSF::FundReports
     belongs_to :flex_query_run, :class_name => ITSF::FundReports::FlexQuery::Run,
                                 :foreign_key => 'flex_query_run_id'
     belongs_to :underlying_symbol, :class_name => Underlying
+    belongs_to :trade_group
 
     # attributes
     attr_accessible :account,
@@ -112,10 +113,25 @@ module ITSF::FundReports
     validates :order_type, :presence => true
     validates :quantity, :presence => true
     validates :symbol, :presence => true
+    validates :trade_time, :presence => true
     validates :transaction_type, :presence => true
+
+    def buy?
+      action_name == 'BUY'
+    end # def
 
     def discover_source_order
       self.order = ITSF::FundReports::Trades::Order.where(:ib_order_identifier => ib_order_identifier).first
+    end # def
+
+    def sell?
+      action_name == 'SELL'
+    end # def
+
+    private
+
+    def action_name
+      action.name
     end # def
   end # class Trades::Trade < ActiveRecord::Base
 end # module ITSF::FundReports

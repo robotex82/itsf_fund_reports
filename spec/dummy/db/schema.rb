@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130427233023) do
+ActiveRecord::Schema.define(:version => 20130429091129) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -119,11 +119,23 @@ ActiveRecord::Schema.define(:version => 20130427233023) do
     t.string   "format"
     t.text     "description"
     t.integer  "account_id"
+    t.integer  "recurrence_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end
 
+  add_index "itsf_fund_reports_flex_queries", ["account_id"], :name => "index_itsf_fund_reports_flex_queries_on_account_id"
+  add_index "itsf_fund_reports_flex_queries", ["recurrence_id"], :name => "index_itsf_fund_reports_flex_queries_on_recurrence_id"
+
+  create_table "itsf_fund_reports_flex_query_recurrences", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "itsf_fund_reports_flex_query_runs", :force => true do |t|
+    t.datetime "imported_at"
     t.string   "asset_file_name"
     t.integer  "asset_file_size"
     t.string   "asset_content_type"
@@ -154,6 +166,21 @@ ActiveRecord::Schema.define(:version => 20130427233023) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  create_table "itsf_fund_reports_trade_groups", :force => true do |t|
+    t.integer  "symbol_id"
+    t.integer  "underlying_symbol_id"
+    t.datetime "first_open_time"
+    t.datetime "last_close_time"
+    t.decimal  "pnl_points",           :precision => 12, :scale => 4
+    t.integer  "multiplier"
+    t.text     "description"
+    t.datetime "created_at",                                          :null => false
+    t.datetime "updated_at",                                          :null => false
+  end
+
+  add_index "itsf_fund_reports_trade_groups", ["symbol_id"], :name => "index_itsf_fund_reports_trade_groups_on_symbol_id"
+  add_index "itsf_fund_reports_trade_groups", ["underlying_symbol_id"], :name => "index_itsf_fund_reports_trade_groups_on_underlying_symbol_id"
 
   create_table "itsf_fund_reports_trades_orders", :force => true do |t|
     t.integer  "account_id"
@@ -299,6 +326,7 @@ ActiveRecord::Schema.define(:version => 20130427233023) do
     t.integer  "order_id"
     t.integer  "order_type_id"
     t.integer  "flex_query_run_id"
+    t.integer  "trade_group_id"
     t.datetime "created_at",                                                :null => false
     t.datetime "updated_at",                                                :null => false
   end
@@ -314,6 +342,7 @@ ActiveRecord::Schema.define(:version => 20130427233023) do
   add_index "itsf_fund_reports_trades_trades", ["order_type_id"], :name => "index_itsf_fund_reports_trades_trades_on_order_type_id"
   add_index "itsf_fund_reports_trades_trades", ["security_id"], :name => "index_itsf_fund_reports_trades_trades_on_security_id"
   add_index "itsf_fund_reports_trades_trades", ["symbol_id"], :name => "index_itsf_fund_reports_trades_trades_on_symbol_id"
+  add_index "itsf_fund_reports_trades_trades", ["trade_group_id"], :name => "index_itsf_fund_reports_trades_trades_on_trade_group_id"
   add_index "itsf_fund_reports_trades_trades", ["transaction_type_id"], :name => "index_itsf_fund_reports_trades_trades_on_transaction_type_id"
   add_index "itsf_fund_reports_trades_trades", ["underlying_symbol_id"], :name => "index_itsf_fund_reports_trades_trades_on_underlying_symbol_id"
 

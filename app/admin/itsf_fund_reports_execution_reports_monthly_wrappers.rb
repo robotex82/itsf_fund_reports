@@ -1,4 +1,6 @@
 ActiveAdmin.register ITSF::FundReports::ExecutionReports::MonthlyWrapper do
+  menu :parent => Proc.new { I18n.t('itsf.fund_reports.active_admin.executions.menu') }.call
+
   config.comments = false
   before_filter do
     @skip_sidebar = true

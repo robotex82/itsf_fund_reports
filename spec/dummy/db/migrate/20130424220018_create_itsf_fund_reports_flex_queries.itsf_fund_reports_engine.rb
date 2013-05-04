@@ -8,8 +8,11 @@ class CreateItsfFundReportsFlexQueries < ActiveRecord::Migration
 
       # associations
       t.references :account
+      t.references :recurrence
 
       t.timestamps
     end
+    add_index :itsf_fund_reports_flex_queries, :account_id
+    add_index :itsf_fund_reports_flex_queries, :recurrence_id
   end
 end

@@ -5,8 +5,8 @@ module ITSF::FundReports
     describe 'with a winning long trade' do
       before do
         @quantity = 2
-        @buy = FactoryGirl.create(:itsf_fund_reports_action_buy)
-        @sell = FactoryGirl.create(:itsf_fund_reports_action_sell)
+        @buy = FactoryGirl.create(:itsf_fund_reports_action_bot)
+        @sell = FactoryGirl.create(:itsf_fund_reports_action_sld)
         @account = FactoryGirl.create(:itsf_fund_reports_account, :name => 'DU123456')
         @currency = FactoryGirl.create(:itsf_fund_reports_currency, :name => 'EUR')
         @exchange = FactoryGirl.create(:itsf_fund_reports_exchange, :name => 'DTB')

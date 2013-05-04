@@ -22,9 +22,17 @@ module ITSF::FundReports
     validates_attachment_presence :asset
 
     def import
-      imported_orders = import_orders
-      imported_trades = import_trades
+      if imported?
+        errors.add(:base, "This Flex Query run has already been imported at #{imported_at}") and return false
+      end
+      result = import_orders && import_trades
+      self.update_attribute(:imported_at, Time.zone.now)
+      return result
     end # import
+
+    def imported?
+      !imported_at.nil?
+    end
 
     private
     def asset_content
@@ -63,7 +71,7 @@ module ITSF::FundReports
       orders.each do |order|
         order.update_attribute(:flex_query_run_id, self.id)
       end
-      orders
+      orders.size == raw_orders.size
     end # def
 
     def import_trades
@@ -73,7 +81,7 @@ module ITSF::FundReports
       trades.each do |trade|
         trade.update_attribute(:flex_query_run_id, self.id)
       end
-      trades
+      trades.size == raw_trades.size
     end # def
 
     def parsed_asset_content

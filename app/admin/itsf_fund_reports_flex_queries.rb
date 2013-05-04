@@ -1,7 +1,10 @@
 ActiveAdmin.register ITSF::FundReports::FlexQuery do
+  menu :parent => Proc.new { I18n.t('itsf.fund_reports.active_admin.flex_queries.menu') }.call
+
   form do |f|
     f.inputs do
       f.input :account
+      f.input :recurrence
       f.input :query_identifier
       f.input :format, :as => :select, :collection => ITSF::FundReports::Configuration.allowed_flex_query_formats.map(&:to_s)
       f.input :description
@@ -18,6 +21,7 @@ ActiveAdmin.register ITSF::FundReports::FlexQuery do
     selectable_column
     column :account
     column :description
+    column :recurrence
     column :query_identifier
     column :format
     column :created_at
